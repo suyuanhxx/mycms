@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mycms.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.mycms.model.Article" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="typename" property="typename" jdbcType="VARCHAR" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+    <result column="readtimes" property="readtimes" jdbcType="INTEGER" />
+    <result column="commenttimes" property="commenttimes" jdbcType="INTEGER" />
+    <result column="articlepic" property="articlepic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, userid, username, typeid, typename, pubtime, readtimes, commenttimes, 
+    articlepic
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mycms.model.Article" >
+    insert into article (id, title, userid, 
+      username, typeid, typename, 
+      pubtime, readtimes, commenttimes, 
+      articlepic)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, #{typename,jdbcType=VARCHAR}, 
+      #{pubtime,jdbcType=TIMESTAMP}, #{readtimes,jdbcType=INTEGER}, #{commenttimes,jdbcType=INTEGER}, 
+      #{articlepic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mycms.model.Article" >
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="typename != null" >
+        typename,
+      </if>
+      <if test="pubtime != null" >
+        pubtime,
+      </if>
+      <if test="readtimes != null" >
+        readtimes,
+      </if>
+      <if test="commenttimes != null" >
+        commenttimes,
+      </if>
+      <if test="articlepic != null" >
+        articlepic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="typename != null" >
+        #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null" >
+        #{pubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readtimes != null" >
+        #{readtimes,jdbcType=INTEGER},
+      </if>
+      <if test="commenttimes != null" >
+        #{commenttimes,jdbcType=INTEGER},
+      </if>
+      <if test="articlepic != null" >
+        #{articlepic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mycms.model.Article" >
+    update article
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="typename != null" >
+        typename = #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null" >
+        pubtime = #{pubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readtimes != null" >
+        readtimes = #{readtimes,jdbcType=INTEGER},
+      </if>
+      <if test="commenttimes != null" >
+        commenttimes = #{commenttimes,jdbcType=INTEGER},
+      </if>
+      <if test="articlepic != null" >
+        articlepic = #{articlepic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mycms.model.Article" >
+    update article
+    set title = #{title,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      typeid = #{typeid,jdbcType=INTEGER},
+      typename = #{typename,jdbcType=VARCHAR},
+      pubtime = #{pubtime,jdbcType=TIMESTAMP},
+      readtimes = #{readtimes,jdbcType=INTEGER},
+      commenttimes = #{commenttimes,jdbcType=INTEGER},
+      articlepic = #{articlepic,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectLastArticle" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from article order by pubtime desc limit 5
+  </select>
+</mapper>

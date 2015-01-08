@@ -9,7 +9,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 ">
 
 	<!-- JNDI方式配置数据源 -->
-	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> <property name="jndiName" value="${jndiName}"></property> </bean> -->
+	<!-- <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"></bean> -->
 
 	<!-- 配置数据源 -->
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
@@ -55,16 +55,13 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 	<!-- mybatis文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- 自动扫描entity目录，省略Configuration.xml里手工配置 -->
-		<property name="mapperLocations" value="classpath:mycms/mapping/*.xml" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="mycms.dao" />
+		<property name="basePackage" value="com.mycms.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
-
-
 
 	<!-- 配置事务管理器 -->
 	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -98,8 +95,8 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="transactionPointcut" expression="execution(* mycms.service..*.*(..))" />
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.mycms.service.*.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
 	</aop:config>
-
+	
 </beans>

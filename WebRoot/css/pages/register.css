@@ -66,6 +66,10 @@
 #man {
 	width: 50px;
 }
+
+#passwordtag{
+	color: red;
+}
 /*------------------------------------------------------------------
 [4. Extra / #register-extra]
 */

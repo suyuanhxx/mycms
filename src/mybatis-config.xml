@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties>
+		<property name="dialect" value="mysql" />
+		<property name="pageSqlId" value=".*Page$" />
+	</properties>
+	
+	<typeAliases>
+		<typeAlias alias="Admin" type="com.mycms.model.Admin" />
+		<typeAlias alias="Article" type="com.mycms.model.Article" />
+		<typeAlias alias="ArticleContext" type="com.mycms.model.ArticleContext" />
+		<typeAlias alias="ArticleType" type="com.mycms.model.ArticleType" />
+		<typeAlias alias="Comment" type="com.mycms.model.Comment" />
+		<typeAlias alias="USer" type="com.mycms.model.User" />
+	</typeAliases>
+    
+    <plugins>
+    	<plugin interceptor="com.mycms.interceptor.PaginationInterceptor"></plugin>
+    </plugins>
+	
+	<mappers>
+		<mapper resource="com/mycms/mapping/AdminMapper.xml" />
+		<mapper resource="com/mycms/mapping/ArticleContextMapper.xml" />
+		<mapper resource="com/mycms/mapping/ArticleMapper.xml" />
+		<mapper resource="com/mycms/mapping/ArticleTypeMapper.xml" />
+		<mapper resource="com/mycms/mapping/CommentMapper.xml" />
+		<mapper resource="com/mycms/mapping/UserMapper.xml" />
+	</mappers>
+</configuration>
