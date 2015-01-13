@@ -1,5 +1,7 @@
 package com.mycms.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,6 +33,42 @@ public class RegisterController extends BaseController {
 		}
 		else
 			return "error";
+	}
+	
+	@RequestMapping(value="/checkusername")
+	public boolean checkusername(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			boolean result = false;
+			response.setContentType("text/xml;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<message>");
+
+			String old = request.getParameter("username");
+			if (old != null) {
+				User userd= userService.selectByUsername(old);
+				if (userd==null) {
+					out.println("<usernamemes>"
+							+ "用户名已存在"
+							+ "</usernamemes>");
+					result = true;
+				} else {
+					out.println("<usernamemes>"
+							+ "username not exist,you can use it"
+							+ "</usernamemes>");
+					result = false;
+				}
+			} else {
+				out.println("<usernamemes>" + "username is required"
+						+ "</usernamemes>");
+				result = false;
+			}
+			out.println("</message>");
+			out.close();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

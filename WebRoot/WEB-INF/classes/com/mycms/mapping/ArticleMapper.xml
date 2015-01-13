@@ -156,4 +156,13 @@
   	<include refid="Base_Column_List" />
   	from article order by pubtime desc limit 5
   </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from article
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+   <select id="selectLastInsertId" resultType="java.lang.Integer">
+    select max(id) from article
+  </select>
 </mapper>

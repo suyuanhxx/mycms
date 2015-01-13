@@ -30,4 +30,10 @@ public class ArticleContextService {
 		rs.setResultObj(articleContextMapper.searchByKey(key));
 		return rs;
 	}
+	
+	public boolean insert(ArticleContext record){
+		int p = articleContextMapper.insert(record);
+		if(p==1)return true;
+		return false;
+	}
 }

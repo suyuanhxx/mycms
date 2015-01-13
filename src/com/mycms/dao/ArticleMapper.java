@@ -19,5 +19,8 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
     
     List<Article> selectLastArticle();
+    
+    List<Article> selectByUserId(Integer id);
 
+    Integer selectLastInsertId();
 }

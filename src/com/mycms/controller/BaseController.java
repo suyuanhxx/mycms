@@ -9,5 +9,9 @@ import com.google.common.collect.Maps;
 
 @Controller
 public class BaseController {
-	Map<String,Object> session = Maps.newHashMap();
+	
+	protected static Map<String,Object> logininfo = Maps.newHashMap();
+	
+	protected static final String USER_SESSION = "user_session";
+	
 }

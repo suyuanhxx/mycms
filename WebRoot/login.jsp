@@ -1,8 +1,13 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>MyCMS</title>
+  	<meta charset="utf-8" />
+    <title>Bootstrap Admin</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />    
@@ -10,20 +15,16 @@
     <link href="./css/bootstrap.min.css" rel="stylesheet" />
     <link href="./css/bootstrap-responsive.min.css" rel="stylesheet" />
     
-    <link href="./css/font-awesome.css" rel="stylesheet" />
-    
     <link href="./css/adminia.css" rel="stylesheet" /> 
     <link href="./css/adminia-responsive.css" rel="stylesheet" /> 
     
-	<link href="./css/pages/register.css" rel="stylesheet" /> 		
+    <link href="./css/pages/login.css" rel="stylesheet" /> 
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 	
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-
 <body>
 	
 <div class="navbar navbar-fixed-top">
@@ -38,7 +39,7 @@
 				<span class="icon-bar"></span> 				
 			</a>
 			
-			<a class="brand" href="./"></a>
+			<a class="brand" href="./">Admin</a>
 			
 			<div class="nav-collapse">
 			
@@ -59,36 +60,23 @@
 </div> <!-- /navbar -->
 
 
-<div id="register-container">
+<div id="login-container">
 	
 	
-	<div id="register-header">
+	<div id="login-header">
 		
-		<h3>register</h3>
+		<h3>Login</h3>
 		
-	</div> <!-- /register-header -->
+	</div> <!-- /login-header -->
 	
-	<div id="register-content" class="clearfix">
+	<div id="login-content" class="clearfix">
 	
-			<form action="register.do" method="post" class="" />
+	<form name="loginform" action="login.do" method="post"/>
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="username">Username</label>
 						<div class="controls">
-							<input type="text" class="" id="username" name="username" width="96%"/>
-						</div>
-					</div>
-					<!--<div class="control-group">
-						<label class="control-label" for="sex">Sex</label>
-						<div class="controls">
-							<input id="man" type="radio" checked="checked" name="1"/>男
-							<input id="woman" type="radio"  name="1" />女
-						</div>
-					</div>-->
-					<div class="control-group">
-						<label class="control-label" for="age">Age</label>
-						<div class="controls">
-							<input type="text" class="" id="age" name="age"/>
+							<input type="text" class="" id="username" name="username"/>
 						</div>
 					</div>
 					<div class="control-group">
@@ -98,42 +86,37 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="repassword">ConfimPassword</label>
-						<div class="controls">
-							<input type="password" class="" id="repassword" name="password"/>
-							<label id="passwordtag"></label>
-						</div>
-						
+						<label class="control-label" id="logintip"></label>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="email">Email</label>
-						<div class="controls">
-							<input type="text" class="" id="email" name="email"/>
-						</div>
+						<label class="control-label" id="loginmsg">${loginmsg }</label>
 					</div>
 				</fieldset>
 				
-				<div class="pull-left">
-					<a href="index.html"><i class="icon-chevron-left"></i> Back</a>
+				<div id="remember-me" class="pull-left">
+					<input type="checkbox" name="remember" id="remember" />
+					<label id="remember-label" for="remember">Remember Me</label>
 				</div>
-
+				
 				<div class="pull-right">
-					<button id="register" type="submit" class="btn btn-warning btn-large">
-						register
+					<button id="login" type="button" class="btn btn-warning btn-large">
+						Login
 					</button>
 				</div>
 			</form>
 			
-		</div> <!-- /register-content -->
+		</div> <!-- /login-content -->
 		
 		
-		<div id="register-extra">
+		<div id="login-extra">
 			
-			<p>Have an account? <a href="login.html">Sign In.</a></p>
+			<p>Don't have an account? <a href="register.html">Sign Up.</a></p>
 			
-		</div> <!-- /register-extra -->
+			<p>Remind Password? <a href="forgot_password.html">Retrieve.</a></p>
+			
+		</div> <!-- /login-extra -->
 	
-</div> <!-- /register-wrapper -->
+</div> <!-- /login-wrapper -->
 
     
 
@@ -142,6 +125,8 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="./js/jquery-1.7.2.min.js"></script>
 <script src="./js/bootstrap.js"></script>
-<script src="./js/register.js"></script>
-  </body>
+<script type="text/javascript" src="./js/login.js"></script>
+<script type="text/javascript">
+</script>
+</body>
 </html>

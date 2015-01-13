@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+  	<meta charset="utf-8" />
     <title>Dashboard - Bootstrap Admin</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -9,8 +9,6 @@
     
     <link href="./css/bootstrap.min.css" rel="stylesheet" />
     <link href="./css/bootstrap-responsive.min.css" rel="stylesheet" />
-    
-    <link href="./css/font-awesome.css" rel="stylesheet" />
     
     <link href="./css/adminia.css" rel="stylesheet" /> 
     <link href="./css/adminia-responsive.css" rel="stylesheet" /> 
@@ -22,8 +20,6 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 	
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-
 <body>
 	
 <div class="navbar navbar-fixed-top">
@@ -38,7 +34,7 @@
 				<span class="icon-bar"></span> 				
 			</a>
 			
-			<a class="brand" href="./">Adminia Admin</a>
+			<a class="brand" href="./">Admin</a>
 			
 			<div class="nav-collapse">
 			
@@ -70,7 +66,7 @@
 	
 	<div id="login-content" class="clearfix">
 	
-	<form action="login.do" method="post"/>
+	<form name="loginform" action="login.do" method="post"/>
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="username">Username</label>
@@ -84,6 +80,9 @@
 							<input type="password" class="" id="password" name="password"/>
 						</div>
 					</div>
+					<div class="control-group">
+						<label class="control-label" id="logintip"></label>
+					</div>
 				</fieldset>
 				
 				<div id="remember-me" class="pull-left">
@@ -92,9 +91,12 @@
 				</div>
 				
 				<div class="pull-right">
-					<button type="submit" class="btn btn-warning btn-large">
+					<button id="login" type="button" class="btn btn-warning btn-large">
 						Login
 					</button>
+				</div>
+				<div class="control-group">
+						<label class="control-label">${loginmsg }</label>
 				</div>
 			</form>
 			
@@ -117,9 +119,9 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="./js/jquery-1.7.2.min.js"></script>
-
-
 <script src="./js/bootstrap.js"></script>
-
-  </body>
+<script type="text/javascript" src="./js/login.js"></script>
+<script type="text/javascript">
+</script>
+</body>
 </html>

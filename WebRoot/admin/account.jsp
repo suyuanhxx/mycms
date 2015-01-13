@@ -1,23 +1,27 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
     <title>User Account - Bootstrap Admin</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />    
     
-    <link href="./css/bootstrap.min.css" rel="stylesheet" />
-    <link href="./css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet" />
     
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" />
-    <link href="./css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
     
-    <link href="./css/adminia.css" rel="stylesheet" /> 
-    <link href="./css/adminia-responsive.css" rel="stylesheet" /> 
+    <link href="../css/adminia.css" rel="stylesheet" /> 
+    <link href="../css/adminia-responsive.css" rel="stylesheet" /> 
     
     
-    <link href="./css/pages/plans.css" rel="stylesheet" /> 
+    <link href="../css/pages/plans.css" rel="stylesheet" /> 
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -54,7 +58,7 @@
 					<li class="dropdown">
 						
 						<a data-toggle="dropdown" class="dropdown-toggle " href="#">
-							Rod Howard <b class="caret"></b>							
+							${admin.username }<b class="caret"></b>							
 						</a>
 						
 						<ul class="dropdown-menu">
@@ -404,10 +408,10 @@
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="../js/jquery-1.7.2.min.js"></script>
 
 
-<script src="./js/bootstrap.js"></script>
+<script src="../js/bootstrap.js"></script>
 
   </body>
 </html>

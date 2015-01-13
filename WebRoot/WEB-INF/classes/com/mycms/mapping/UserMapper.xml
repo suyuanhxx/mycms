@@ -26,7 +26,7 @@
     select 
     <include refid="Base_Column_List" />
     from users
-    where username = #{id,jdbcType=String}
+    where username = #{username,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from users

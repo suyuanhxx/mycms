@@ -1,16 +1,20 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Dashboard - Bootstrap Admin</title>
+    <title>Admin</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />    
     
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/bootstrap-responsive.min.css" rel="stylesheet" />
-    
-    <link href="../css/font-awesome.css" rel="stylesheet" />
     
     <link href="../css/adminia.css" rel="stylesheet" /> 
     <link href="../css/adminia-responsive.css" rel="stylesheet" /> 
@@ -39,7 +43,7 @@
 				<span class="icon-bar"></span> 				
 			</a>
 			
-			<a class="brand" href="./">Adminia Admin</a>
+			<a class="brand" href="./">Admin</a>
 			
 			<div class="nav-collapse">
 			
@@ -53,7 +57,7 @@
 					<li class="dropdown">
 						
 						<a data-toggle="dropdown" class="dropdown-toggle " href="#">
-							Rod Howard <b class="caret"></b>							
+							${user_session.username } <b class="caret"></b>							
 						</a>
 						
 						<ul class="dropdown-menu">
@@ -68,7 +72,7 @@
 							<li class="divider"></li>
 							
 							<li>
-								<a href="./"><i class="icon-off"></i> Logout</a>
+								<a href="../loginout.do"><i class="icon-off"></i> Logout</a>
 							</li>
 						</ul>
 					</li>
@@ -101,7 +105,7 @@
 				
 					<div class="account-details">
 					
-						<span class="account-name">Rod Howard</span>
+						<span class="account-name">${admin.username }</span>
 						
 						<span class="account-role">Administrator</span>
 						
