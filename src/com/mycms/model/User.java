@@ -23,12 +23,6 @@ public class User {
 
     private Date registertime;
 
-    private Integer status;
-
-    private String descn;
-
-    private Integer role;
-
     public Integer getId() {
         return id;
     }
@@ -107,29 +101,5 @@ public class User {
 
     public void setRegistertime(Date registertime) {
         this.registertime = registertime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getDescn() {
-        return descn;
-    }
-
-    public void setDescn(String descn) {
-        this.descn = descn == null ? null : descn.trim();
-    }
-
-    public Integer getRole() {
-        return role;
-    }
-
-    public void setRole(Integer role) {
-        this.role = role;
     }
 }
