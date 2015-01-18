@@ -12,7 +12,7 @@
 		<typeAlias alias="ArticleContext" type="com.mycms.model.ArticleContext" />
 		<typeAlias alias="ArticleType" type="com.mycms.model.ArticleType" />
 		<typeAlias alias="Comment" type="com.mycms.model.Comment" />
-		<typeAlias alias="USer" type="com.mycms.model.User" />
+		<typeAlias alias="User" type="com.mycms.model.User" />
 	</typeAliases>
     
     <plugins>

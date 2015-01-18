@@ -45,6 +45,7 @@ public class LoginController extends BaseController{
 				mav = new ModelAndView(new RedirectView("./admin/admin.jsp"));
 				mav.addObject("user_session",vo);
 				logininfo.put("user_session", vo);
+				getRequest().getSession().setAttribute("user_session", vo);
 			}
 			else
 			{

@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 			http://www.springframework.org/schema/security 
-			http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+			http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	<!--  Spring-Security 的配置 -->
+	<!--
+		注意use-expressions=true.表示开启表达式,否则表达式将不可用. see:http://www.family168.com/tutorial/springsecurity3/html/el-access.html
+	-->
+	<security:http auto-config="true" use-expressions="false" access-denied-page="/404/login_failure.html">
+		<!--允许所有人访问-->
+		<!--		<security:intercept-url pattern="/**" access="permitAll" />-->
+		<!--允许ROLE_ADMIN权限访问-->
+		<security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+		<!--允许ROLE_USER权限访问-->
+		<security:intercept-url pattern="/admin/admin.jsp" access="ROLE_USER,ROLE_ADMIN" />
+		<!--允许IS_AUTHENTICATED_ANONYMOUSLY匿名访问-->
+		<security:intercept-url pattern="/index.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<!-- login-page:默认指定的登录页面. authentication-failure-url:出错后跳转页面. default-target-url:成功登陆后跳转页面 -->
+		<security:form-login login-page="/login.jsp" authentication-failure-url="/index.html"
+			default-target-url="/loginindex.jsp" />
+		<!--
+			invalidate-session：指定在退出系统时是否要销毁Session。logout-success-url：退出系统后转向的URL。logout-url：指定了用于响应退出系统请求的URL。其默认值为：/j_spring_security_logout。
+		-->
+		<security:logout invalidate-session="true" logout-success-url="/index.html" logout-url="/j_spring_security_logout" />
+		<!--
+			max-sessions:允许用户帐号登录的次数。范例限制用户只能登录一次。exception-if-maximum-exceeded:
+			默认为false，此值表示：用户第二次登录时，前一次的登录信息都被清空。当exception-if-maximum-exceeded="true"时系统会拒绝第二次登录。
+		-->
 
+		<security:session-management>
+			<security:concurrency-control error-if-maximum-exceeded="true" max-sessions="1" />
+		</security:session-management>
+
+	</security:http>
+	<!-- 指定一个自定义的authentication-manager :customUserDetailsService -->
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<security:password-encoder ref="passwordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<!-- 对密码进行MD5编码 -->
+	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+
+	<!-- 
+		通过 customUserDetailsService,Spring会控制用户的访问级别.
+		也可以理解成:以后我们和数据库操作就是通过customUserDetailsService来进行关联.
+	 -->
+	<bean id="customUserDetailsService" class="com.mycms.security.CustomUserDetailsService" />
+	<!--	自定义登陆错误提示，可以取出mymessages.properties的国际化消息-->
+	
 </beans>

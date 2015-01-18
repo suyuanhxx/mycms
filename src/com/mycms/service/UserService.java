@@ -20,7 +20,7 @@ public class UserService {
 	}
 	
 	public User selectByUsername(String username){
-		return userMapper.selectByUsername(username);
+		return userMapper.findByUsername(username);
 	}
 
 }
